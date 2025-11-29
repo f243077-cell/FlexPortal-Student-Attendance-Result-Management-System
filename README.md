@@ -212,6 +212,30 @@ This project demonstrates:
 
 The codebase is production-ready and can be extended with additional features as needed.
 
+### USE CASE DIAGRAM
+![Use Case Diagram](screenshots/Use-CaseDiagram.jpg )
+
+### UML ACTIVITY DIAGRAM
+![UML Activity Diagram](screenshots/UMLActivityDiagram.jpg )
+
+### CRC CARD
+![CRC Card](screenshots/CRCCard.jpg )
+
+
+### Login Page 
+![Login Page](screenshots/Loginpage.png)
+
+### Student Dashboard
+![Student Dashboard](screenshots/StudentDashboard.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/AdminDashboard.png)
+
+### Teacher Dashboard
+![Teacher Dashboard](screenshots/TeacherDashboard.png)
+
+
+
 ---
 
 **Created by**: Muhammad Faizan  (24F-3103), Usman Ghani (24F-3000), Tanzeel Hussain (24F-3077)
