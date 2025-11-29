@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Student Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Teacher Portal</h2>
+                <p>Welcome, <span id="teacherName">Teacher</span></p>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="#" class="menu-item active" data-section="dashboard">Dashboard</a></li>
+                <li><a href="#" class="menu-item" data-section="attendance">Mark Attendance</a></li>
+                <li><a href="#" class="menu-item" data-section="results">Enter Marks</a></li>
+                <li><a href="#" class="menu-item" data-section="students">My Students</a></li>
+                <li><a href="#" class="menu-item" data-section="reports">Reports</a></li>
+                <li><a href="#" id="logoutBtn" class="menu-item logout">Logout</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="top-header">
+                <h1>Teacher Dashboard</h1>
+                <div class="user-info">
+                    <span id="currentDate"></span>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Quick Stats</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-value" id="totalStudents">--</span>
+                                    <span class="stat-label">Total Students</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="totalCourses">--</span>
+                                    <span class="stat-label">Courses Teaching</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="pendingTasks">--</span>
+                                    <span class="stat-label">Pending Tasks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Recent Activity</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="recentActivity" class="activity-list">
+                                <div class="activity-item">
+                                    <span class="activity-time">2 hours ago</span>
+                                    <span class="activity-text">Marked attendance for CS-101</span>
+                                </div>
+                                <div class="activity-item">
+                                    <span class="activity-time">1 day ago</span>
+                                    <span class="activity-text">Uploaded marks for Quiz 2</span>
+                                </div>
+                                <div class="activity-item">
+                                    <span class="activity-time">3 days ago</span>
+                                    <span class="activity-text">Generated attendance report</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Quick Actions</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="quick-actions">
+                                <button class="btn btn-primary" onclick="showSection('attendance')">Mark Attendance</button>
+                                <button class="btn btn-secondary" onclick="showSection('results')">Enter Marks</button>
+                                <button class="btn btn-outline" onclick="showSection('reports')">View Reports</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Attendance Section -->
+            <section id="attendance-section" class="content-section">
+                <div class="section-header">
+                    <h2>Mark Attendance</h2>
+                </div>
+                
+                <div class="attendance-controls">
+                    <div class="form-group">
+                        <label for="attendanceCourse">Select Course</label>
+                        <select id="attendanceCourse" class="form-control">
+                            <option value="">Choose a course</option>
+                            <option value="CS-101">CS-101 - Introduction to Programming</option>
+                            <option value="CS-201">CS-201 - Assembly Language</option>
+                            <option value="MATH-201">MATH-201 - Discrete Mathematics</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="attendanceDate">Date</label>
+                        <input type="date" id="attendanceDate" class="form-control" value="">
+                    </div>
+                </div>
+
+                <div id="attendanceForm" class="attendance-form" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Student List</h3>
+                            <div class="attendance-actions">
+                                <button class="btn btn-sm btn-outline" onclick="markAllPresent()">Mark All Present</button>
+                                <button class="btn btn-sm btn-outline" onclick="markAllAbsent()">Mark All Absent</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="studentAttendanceList" class="student-list">
+                                <!-- Student attendance items will be populated here -->
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-primary" onclick="saveAttendance()">Save Attendance</button>
+                                <button class="btn btn-secondary" onclick="clearAttendance()">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results-section" class="content-section">
+                <div class="section-header">
+                    <h2>Enter Marks</h2>
+                </div>
+                
+                <div class="results-controls">
+                    <div class="form-group">
+                        <label for="marksCourse">Select Course</label>
+                        <select id="marksCourse" class="form-control">
+                            <option value="">Choose a course</option>
+                            <option value="CS-101">CS-101 - Introduction to Programming</option>
+                            <option value="CS-201">CS-201 -Assembly Language</option>
+                            <option value="MATH-201">MATH-201 - Discrete Mathematics</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="assessmentType">Assessment Type</label>
+                        <select id="assessmentType" class="form-control">
+                            <option value="">Select type</option>
+                            <option value="quiz">Quiz</option>
+                            <option value="assignment">Assignment</option>
+                            <option value="midterm">Midterm Exam</option>
+                            <option value="final">Final Exam</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="marksForm" class="marks-form" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Enter Marks</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="marks-table">
+                                <table id="marksTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Student ID</th>
+                                            <th>Student Name</th>
+                                            <th>Marks (0-100)</th>
+                                            <th>Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="marksTableBody">
+                                        <!-- Student marks rows will be populated here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-primary" onclick="saveMarks()">Save Marks</button>
+                                <button class="btn btn-secondary" onclick="calculateGrades()">Calculate Grades</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Students Section -->
+            <section id="students-section" class="content-section">
+                <div class="section-header">
+                    <h2>My Students</h2>
+                </div>
+                
+                <div class="students-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Student List</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="students-filters">
+                                <div class="form-group">
+                                    <label for="filterCourse">Filter by Course</label>
+                                    <select id="filterCourse" class="form-control">
+                                        <option value="">All Courses</option>
+                                        <option value="CS-101">CS-101</option>
+                                        <option value="CS-201">CS-201</option>
+                                        <option value="MATH-201">MATH-201</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div id="studentsList" class="students-list">
+                                <p>Loading student information...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports-section" class="content-section">
+                <div class="section-header">
+                    <h2>Reports</h2>
+                </div>
+                
+                <div class="reports-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Generate Reports</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="report-options">
+                                <div class="form-group">
+                                    <label for="reportType">Report Type</label>
+                                    <select id="reportType" class="form-control">
+                                        <option value="">Select report type</option>
+                                        <option value="attendance">Attendance Report</option>
+                                        <option value="results">Results Report</option>
+                                        <option value="performance">Performance Analysis</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="reportCourse">Course</label>
+                                    <select id="reportCourse" class="form-control">
+                                        <option value="">All Courses</option>
+                                        <option value="CS-101">CS-101</option>
+                                        <option value="CS-201">CS-201</option>
+                                        <option value="MATH-201">MATH-201</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button class="btn btn-primary" onclick="generateReport()">Generate Report</button>
+                                    <button class="btn btn-secondary" onclick="downloadReport()">Download PDF</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Class Statistics</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="classStats" class="class-stats">
+                                <p>Select a course to view statistics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="teacher.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

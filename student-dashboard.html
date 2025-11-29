@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Student Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Student Portal</h2>
+                <p>Welcome, <span id="studentName">Student</span></p>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="#" class="menu-item active" data-section="dashboard">Dashboard</a></li>
+                <li><a href="#" class="menu-item" data-section="attendance">Attendance</a></li>
+                <li><a href="#" class="menu-item" data-section="results">Results</a></li>
+                <li><a href="#" class="menu-item" data-section="profile">Profile</a></li>
+                <li><a href="#" id="logoutBtn" class="menu-item logout">Logout</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="top-header">
+                <h1>Student Dashboard</h1>
+                <div class="user-info">
+                    <span id="currentDate"></span>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Attendance Overview</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-value" id="overallAttendance">--</span>
+                                    <span class="stat-label">Overall Attendance %</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="totalCourses">--</span>
+                                    <span class="stat-label">Total Courses</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Recent Results</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="recentResults" class="results-preview">
+                                <p>No recent results available</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card alerts-card">
+                        <div class="card-header">
+                            <h3>Alerts & Notifications</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="alertsList" class="alerts-list">
+                                <p>No new alerts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Attendance Section -->
+            <section id="attendance-section" class="content-section">
+                <div class="section-header">
+                    <h2>Attendance Records</h2>
+                </div>
+                
+                <div class="attendance-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Course-wise Attendance</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="attendanceList" class="attendance-list">
+                                <p>Loading attendance data...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Attendance History</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="attendance-history">
+                                <div class="history-item">
+                                    <span class="course">CS-101</span>
+                                    <span class="date">2024-11-20</span>
+                                    <span class="status present">Present</span>
+                                </div>
+                                <div class="history-item">
+                                    <span class="course">MATH-201</span>
+                                    <span class="date">2024-11-19</span>
+                                    <span class="status absent">Absent</span>
+                                </div>
+                                <div class="history-item">
+                                    <span class="course">CS-101</span>
+                                    <span class="date">2024-11-18</span>
+                                    <span class="status present">Present</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results-section" class="content-section">
+                <div class="section-header">
+                    <h2>Academic Results</h2>
+                </div>
+                
+                <div class="results-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Grade Summary</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="gradeSummary" class="grade-summary">
+                                <p>Loading grade information...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Detailed Marks</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="detailedMarks" class="detailed-marks">
+                                <p>Select a course to view detailed marks</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile-section" class="content-section">
+                <div class="section-header">
+                    <h2>Student Profile</h2>
+                </div>
+                
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <span id="profileInitials">ST</span>
+                        </div>
+                        <div class="profile-info">
+                            <h3 id="profileName">Student Name</h3>
+                            <p id="profileEmail">student@university.edu</p>
+                            <p id="profileId">Student ID: --</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-details">
+                        <div class="detail-item">
+                            <label>Program:</label>
+                            <span id="profileProgram">Computer Science</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Semester:</label>
+                            <span id="profileSemester">Fall 2024</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Enrollment Year:</label>
+                            <span id="profileYear">2022</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="student.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
