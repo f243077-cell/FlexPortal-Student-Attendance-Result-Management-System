@@ -229,7 +229,7 @@ The codebase is production-ready and can be extended with additional features as
 ![Student Dashboard](Screenshots/StudentDashboard.png)
 
 ### Admin Dashboard
-![Admin Dashboard](Screenshots/Admin Dashboard.png)
+![Admin Dashboard](Screenshots/Admin-Dashboard.png)
 
 ### Teacher Dashboard
 ![Teacher Dashboard](Screenshots/TeacherDashboard.png)
