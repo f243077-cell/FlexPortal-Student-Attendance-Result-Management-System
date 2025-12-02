@@ -218,10 +218,6 @@ The codebase is production-ready and can be extended with additional features as
 ### UML ACTIVITY DIAGRAM
 ![UML Activity Diagram](documentation/UMLActivityDiagram.jpg )
 
-### CRC CARD
-![CRC Card](documentation/CRCCard.jpg )
-
-
 ### Login Page 
 ![Login Page](Screenshots/Loginpage.png)
 
